@@ -17,7 +17,7 @@
 - ### 협업방식: GitHub를 통해 협업
   - #### 먼저 코드를 clone하기
     ```bash
-    git clone
+    git clone https://github.com/Nickey302/Expanded-winter-project.git
     ```
   - #### 이후 개발할 때 코드를 수정했다면 commit을 통해 개발진행
     ```bash
