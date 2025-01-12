@@ -18,6 +18,8 @@
   - #### 먼저 코드를 clone하기
     ```bash
     git clone https://github.com/Nickey302/Expanded-winter-project.git
+    cd Expanded-winter-project
+    npm i
     ```
   - #### 이후 개발할 때 코드를 수정했다면 commit을 통해 개발진행
     ```bash
