@@ -2,20 +2,58 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/vite.svg" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expanded</title>
+    <style>
+      body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+      }
+
+      .center {
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 32px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
-    <div>
-      <h1>방명록을 추가하세요</h1>
+    <div id="app" class="center">
+      <h1>방명록을 추가하세요...</h1>
+      <button onclick="openPopup()">방명록 작성하기</button>
     </div>
-    <script></script>
+    <script>
+      // 팝업 창 열기 함수
+      function openPopup() {
+        const popupUrl = "guestbook.html"; // 팝업 창에서 열릴 URL
+        const popupOptions = "width=600,height=400,scrollbars=no,resizable=no";
+        window.open(popupUrl, "방명록 작성", popupOptions);
+      }
+    </script>
   </body>
 </html>
