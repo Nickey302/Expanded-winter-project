@@ -18,7 +18,10 @@ document.querySelector('#app').innerHTML = `
     <p class="read-the-docs">
       Click on the Vite logo to learn more
     </p>
+    <p>HIHIHIHI</p>
   </div>
 `
+
+// XPTMXM
 
 setupCounter(document.querySelector('#counter'))
