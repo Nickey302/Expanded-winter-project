@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Expanded</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>방명록 작성</title>
     <style>
       body {
         margin: 0;
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         height: 100vh;
         background-color: #f8f9fa;
         font-family: Arial, sans-serif;
@@ -20,40 +20,86 @@
         text-align: center;
       }
 
-      h1 {
-        font-size: 32px;
-        color: #333;
-        margin-bottom: 20px;
+      .guestbook-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
       }
 
-      button {
-        font-size: 16px;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
+      .guestbook-entry {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 15px;
+        width: 200px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
       }
 
-      button:hover {
-        background-color: #0056b3;
+      .guestbook-entry img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+        margin-bottom: 10px;
+      }
+
+      .guestbook-entry h3,
+      .guestbook-entry p {
+        margin: 5px 0;
       }
     </style>
   </head>
   <body>
-    <div id="app" class="center">
+    <div class="center">
       <h1>방명록을 추가하세요...</h1>
       <button onclick="openPopup()">방명록 작성하기</button>
     </div>
+
+    <div id="guestbookList" class="guestbook-list"></div>
+
     <script>
       // 팝업 창 열기 함수
       function openPopup() {
-        const popupUrl = "guestbook.html"; // 팝업 창에서 열릴 URL
-        const popupOptions = "width=600,height=400,scrollbars=no,resizable=no";
+        const popupUrl = "guestbook.html"; 
+        const popupOptions = "width=800,height=600,scrollbars=no,resizable=no";
         window.open(popupUrl, "방명록 작성", popupOptions);
       }
+
+      // 방명록을 메인 페이지에 추가하는 함수
+      function addGuestbookEntry(name, value, reason, image) {
+        const guestbookList = document.getElementById("guestbookList");
+
+        // 새로운 방명록 항목 생성
+        const guestbookEntry = document.createElement("div");
+        guestbookEntry.classList.add("guestbook-entry");
+
+        // 사진 추가
+        const img = document.createElement("img");
+        img.src = image;
+        guestbookEntry.appendChild(img);
+
+        // 이름, 가치, 이유 추가
+        const h3 = document.createElement("h3");
+        h3.textContent = name;
+        guestbookEntry.appendChild(h3);
+
+        const p1 = document.createElement("p");
+        p1.textContent = `확장하고 싶은 가치: ${value}`;
+        guestbookEntry.appendChild(p1);
+
+        const p2 = document.createElement("p");
+        p2.textContent = `이유: ${reason}`;
+        guestbookEntry.appendChild(p2);
+
+        // 리스트에 추가
+        guestbookList.appendChild(guestbookEntry);
+      }
+
+      // 팝업에서 데이터 전달을 받는 함수
+      window.addGuestbookData = function(name, value, reason, image) {
+        addGuestbookEntry(name, value, reason, image);
+      };
     </script>
   </body>
 </html>
