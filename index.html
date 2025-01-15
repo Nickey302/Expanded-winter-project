@@ -1,60 +1,23 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Rapier2D Collision Example</title>
-    <style>
-      /* 기본 스타일 초기화 */
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background: #f0f0f0;
-      }
-
-      /* 캔버스 중앙 정렬을 위한 컨테이너 - 필요 시 조정 */
-      #myCanvas {
-        display: block;
-        background: #fff;
-        margin: 0 auto;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-
-      /* 가운데 '추가하기' 버튼 */
-      .add-btn {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 120px;
-        height: 40px;
-        background: #4caf50;
-        color: #fff;
-        border: none;
-        cursor: pointer;
-        font-size: 18px;
-        z-index: 10; /* 캔버스 위로 */
-      }
-    </style>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <link
+      href="./src/style.css"
+      rel="stylesheet" />
+    <title>Expanded 방명록</title>
   </head>
   <body>
-    <!-- 가운데 '추가하기' 버튼 -->
-    <button
-      class="add-btn"
-      id="addBtn">
-      추가하기
-    </button>
-    <!-- 2D 렌더링용 캔버스 -->
-    <a href="./src/guestbook/guestbook.html"></a>
-    <canvas
-      id="myCanvas"
-      width="800"
-      height="600"></canvas>
-
-    <!-- Rapier2D: ESM 빌드 (0.14.0 기준) -->
+    <canvas id="guestbookCanvas"></canvas>
+    <button onclick="openPopup()">방명록 작성하기</button>
+    <div
+      id="tooltip"
+      class="tooltip"></div>
     <script
       type="module"
-      src="./src/main.js"></script>
+      src="./src/script.js"></script>
   </body>
 </html>
