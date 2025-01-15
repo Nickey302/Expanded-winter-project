@@ -1,5 +1,6 @@
 import RAPIER from '@dimforge/rapier2d'
 
+<<<<<<< HEAD
 async function init() {
   //
   // [1] Rapier 공식 예시 스니펫 (동적 임포트 + 기본 월드 구성 샘플)
@@ -10,6 +11,27 @@ async function init() {
   let gravity = { x: 0.0, y: -9.81 };
   // Rapier 월드 생성
   let world = new RAPIER.World(gravity);
+=======
+document.querySelector('#app').innerHTML = `
+  <div>
+    <a href="https://vite.dev" target="_blank">
+      <img src="${viteLogo}" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
+      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
+    </a>
+    <h1>Hello Vite!</h1>
+    <div class="card">
+      <button id="counter" type="button"></button>
+    </div>
+    <p class="read-the-docs">
+      Click on the Vite logo to learn more
+    </p>
+  </div>
+`
+
+
+>>>>>>> 7e003ac002f554c2f44fd46e1c0b17bfe3aad0b1
 
   // 땅(ground)으로 쓸 콜라이더(아주 얇은 직사각형)
   let groundColliderDesc = RAPIER.ColliderDesc.cuboid(10.0, 0.1)
