@@ -12,7 +12,7 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-color: #f8f9fa;
+        background-color: #9DC9BF;
         font-family: Arial, sans-serif;
       }
 
@@ -21,25 +21,26 @@
       }
 
       button {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        padding: 10px 20px;
-        font-size: 16px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* 버튼을 화면의 정중앙으로 이동 */
+    padding: 20px 40px; /* 버튼 크기 조정 */
+    font-size: 20px; /* 버튼 글씨 크기 증가 */
+    background-color: #EDEFEE;
+    color: #525B5A;
+    border: none;
+    border-radius: 10px; /* 버튼 모서리를 더 둥글게 */
+    cursor: pointer;
+}
 
-      button:hover {
-        background-color: #0056b3;
-      }
+    button:hover {
+    background-color: #79C3B8;
+}
 
       .tooltip {
         position: absolute;
-        background: rgba(0, 0, 0, 0.8);
+        background: #525B5A /*rgba(0, 0, 0, 0.8);*/
         color: white;
         padding: 5px 10px;
         border-radius: 5px;
@@ -107,6 +108,7 @@
       // 공(원) 그리기 함수
       function drawBall(ball) {
         ctx.save();
+        ctx.globalCompositeOperation = "lighter"; // 겹치는 부분을 밝게 합성
         ctx.beginPath();
         ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
         ctx.clip();
