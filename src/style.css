@@ -9,26 +9,26 @@ body {
     font-family: Arial, sans-serif;
   }
 
-  canvas {
-    display: block;
-  }
+canvas {
+  display: block;
+}
 
-  button {
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%); /* 버튼을 화면의 정중앙으로 이동 */
-padding: 20px 40px; /* 버튼 크기 조정 */
-font-size: 20px; /* 버튼 글씨 크기 증가 */
-background-color: #EDEFEE;
-color: #525B5A;
-border: none;
-border-radius: 10px; /* 버튼 모서리를 더 둥글게 */
-cursor: pointer;
+button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 버튼을 화면의 정중앙으로 이동 */
+  padding: 20px 40px; /* 버튼 크기 조정 */
+  font-size: 20px; /* 버튼 글씨 크기 증가 */
+  background-color: #EDEFEE;
+  color: #525B5A;
+  border: none;
+  border-radius: 10px; /* 버튼 모서리를 더 둥글게 */
+  cursor: pointer;
 }
 
 button:hover {
-background-color: #79C3B8;
+  background-color: #79C3B8;
 }
 
 .tooltip {
