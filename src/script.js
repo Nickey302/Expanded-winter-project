@@ -150,3 +150,13 @@ function addGuestbookData(name, value, reason, image) {
   // 공(원) 생성 및 애니메이션에 추가
   createBall(name, value, reason, image)
 }
+
+// 방명록 버튼 이벤트 리스너 추가
+document.getElementById('guestbookButton').addEventListener('click', () => {
+  const popupUrl = 'src/guestbook/guestbook.html'
+  window.open(
+    popupUrl,
+    '방명록 작성',
+    'width=600,height=400,scrollbars=no,resizable=no'
+  )
+})
