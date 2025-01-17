@@ -4,90 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>방명록 작성</title>
-    <style>
-      body {
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        height: 100vh;
-        background-color: #EDEFEE;
-        font-family: Arial, sans-serif;
-      }
-
-      .center {
-        text-align: center;
-      }
-
-      .container {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 800px;
-        border: 2px solid #ddd;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 10px;
-      }
-
-      .camera {
-        flex: 1;
-        margin-right: 20px;
-      }
-
-      video {
-        width: 100%;
-        height: auto;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-      }
-
-      .form {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-      }
-
-      input, textarea {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-
-      button {
-        padding: 10px;
-        background-color: #79C3B8;
-        color: #EDEFEE;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 10px;
-      }
-
-      button:hover {
-        background-color: #79C3B8;
-      }
-
-      .capture-button {
-        padding: 10px;
-        background-color: #79C3B8;
-        color: #EDEFEE;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      .capture-button:hover {
-        background-color: #79C3B8;
-      }
-
-      canvas {
-        display: none;
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body>
     <div class="container">
@@ -101,7 +18,7 @@
       <!-- 오른쪽: 폼 -->
       <div class="form">
         <h1>방명록 작성</h1>
-        <form onsubmit="event.preventDefault(); submitForm();">
+        <form id="guestbookForm">
           <input type="text" id="name" placeholder="이름을 입력하세요" required>
           <textarea id="value" placeholder="당신이 확장하고 싶은 가치는 무엇인가요? (10자 이내)" maxlength="10" required></textarea>
           <textarea id="reason" placeholder="왜 그것을 확장하고 싶은가요?" required></textarea>
@@ -110,53 +27,6 @@
       </div>
     </div>
 
-    <script>
-      // 웹캠 스트림을 연결하는 함수
-      async function initCamera() {
-        try {
-          const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-          const videoElement = document.getElementById('video');
-          videoElement.srcObject = stream;
-        } catch (err) {
-          alert('웹캠을 사용할 수 없습니다: ' + err.message);
-        }
-      }
-
-      // 사진 찍기 기능
-      document.getElementById('captureButton').addEventListener('click', () => {
-        const videoElement = document.getElementById('video');
-        const canvas = document.getElementById('canvas');
-        const context = canvas.getContext('2d');
-
-        // 비디오의 크기를 캔버스에 맞추기
-        canvas.width = videoElement.videoWidth;
-        canvas.height = videoElement.videoHeight;
-
-        // 비디오에서 현재 프레임을 캔버스에 그리기
-        context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
-
-        // 캔버스를 이미지로 변환하여 base64로 저장
-        const imageData = canvas.toDataURL('image/png');
-        alert('사진이 찍혔습니다!');
-      });
-
-      // 폼 제출 함수
-      function submitForm() {
-        const name = document.getElementById('name').value;
-        const value = document.getElementById('value').value;
-        const reason = document.getElementById('reason').value;
-        const canvas = document.getElementById('canvas');
-        const image = canvas.toDataURL('image/png'); // 이미지 데이터 얻기
-
-        // 부모 창에 데이터 전달
-        if (window.opener && window.opener.addGuestbookData) {
-          window.opener.addGuestbookData(name, value, reason, image);
-        }
-        window.close(); // 팝업을 닫음
-      }
-
-      // 웹캠 초기화
-      initCamera();
-    </script>
+    <script type="module" src="./script.js"></script>
   </body>
 </html>

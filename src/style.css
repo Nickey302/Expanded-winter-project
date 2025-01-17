@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    overflow: hidden; /* 스크롤바 제거 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #9DC9BF;
+    font-family: Arial, sans-serif;
+  }
+
+  canvas {
+    display: block;
+  }
+
+  button {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%); /* 버튼을 화면의 정중앙으로 이동 */
+padding: 20px 40px; /* 버튼 크기 조정 */
+font-size: 20px; /* 버튼 글씨 크기 증가 */
+background-color: #EDEFEE;
+color: #525B5A;
+border: none;
+border-radius: 10px; /* 버튼 모서리를 더 둥글게 */
+cursor: pointer;
+}
+
+button:hover {
+background-color: #79C3B8;
+}
+
+.tooltip {
+  position: absolute;
+  background: #525B5A /*rgba(0, 0, 0, 0.8);*/;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  display: none;
+  pointer-events: none;
+}
