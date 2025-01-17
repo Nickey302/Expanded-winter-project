@@ -10,7 +10,9 @@
     "deploy": "vercel --prod"
   },
   "devDependencies": {
-    "vite": "^6.0.5"
+    "vite": "^6.0.5",
+    "vite-plugin-top-level-await": "^1.4.4",
+    "vite-plugin-wasm": "^3.4.1"
   },
   "dependencies": {
     "@dimforge/rapier2d": "^0.14.0",
