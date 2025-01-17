@@ -11,6 +11,30 @@
     <button id="guestbookButton">방명록 작성하기</button>
     <div id="tooltip" class="tooltip"></div>
 
-    <script src="./src/script.js" type="module"></script>
+    <div id="guestbookModal" class="modal">
+      <div class="modal-content">
+        <div class="container">
+          <div class="camera">
+            <video id="video" autoplay></video>
+            <canvas id="canvas"></canvas>
+            <button type="button" id="captureButton" class="capture-button">사진 찍기</button>
+          </div>
+          <div class="form">
+            <h1>방명록 작성</h1>
+            <form id="guestbookForm">
+              <input type="text" id="name" placeholder="이름을 입력하세요" required>
+              <textarea id="value" placeholder="당신이 확장하고 싶은 가치는 무엇인가요? (10자 이내)" maxlength="10" required></textarea>
+              <textarea id="reason" placeholder="왜 그것을 확장하고 싶은가요?" required></textarea>
+              <div class="button-group">
+                <button type="submit">작성완료</button>
+                <button type="button" id="closeModal">닫기</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./src/script.js"></script>
   </body>
 </html>
