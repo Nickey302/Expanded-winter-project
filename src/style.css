@@ -1,12 +1,31 @@
+@font-face {
+  font-family: 'Pretendard';
+  src: url('/fonts/Pretendard-ExtraLight.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-ExtraBold';
+  src: url('/fonts/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 body {
     margin: 0;
     overflow: hidden; /* 스크롤바 제거 */
+    background-image: url('/image/bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #9DC9BF;
-    font-family: Arial, sans-serif;
+    font-family: 'Pretendard', sans-serif;
   }
 
 canvas {
@@ -25,6 +44,78 @@ button {
   border: none;
   border-radius: 10px; /* 버튼 모서리를 더 둥글게 */
   cursor: pointer;
+  font-family: 'Pretendard-ExtraBold';
+}
+
+
+/* CSS */
+.button-17 {
+  align-items: center;
+  appearance: none;
+  background-color: #fff;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #3c4043;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: 'Pretendard-ExtraBold';
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button-17:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.button-17:active {
+  box-shadow: 0 4px 4px 0 rgba(25, 26, 26, 0.3), 0 8px 12px 6px rgb(60 64 67 / 15%);
+  outline: none;
+}
+
+.button-17:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}
+
+.button-17:not(:disabled) {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):hover {
+  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
+}
+
+.button-17:not(:disabled):focus {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
+}
+
+.button-17:not(:disabled):active {
+  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
+}
+
+.button-17:disabled {
+  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
 }
 
 button:hover {
@@ -88,15 +179,16 @@ button:hover {
 }
 
 .capture-button {
-  width: auto;
-  min-width: 120px;
-  left: 25%;
-  top: 62.5%;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  /* left: 25%;
+  top: 62.5%; */
   padding: 12px 24px;
-  background-color: #79C3B8;
+  background-color: #EDEFEE;
+  border: 2px solid #525b5A;
   color: #EDEFEE;
-  border: none;
-  border-radius: 5px;
+  border-radius: 50%;
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
@@ -104,16 +196,27 @@ button:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* .capture-button:hover {
-  background-color: #9DC9BF;
-  transform: translateY(-0.0001px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.capture-button-background {
+  width: 70px;
+  height: 70px;
+  left: 25%;
+  top: 62.5%;
+  opacity: 0.7;
+  /* padding: 12px 24px; */
+  background-color: #EDEFEE;
+  border: none;
+  color: #EDEFEE;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
 }
 
-.capture-button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-} */
+.capture-button:hover {
+  width: 55px;
+  height: 55px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
 .form {
   flex: 1;
@@ -168,8 +271,8 @@ button:hover {
   background-color: #EDEFEE;
   color: #525B5A;
 }
-
+/* 
 #guestbookButton:hover {
   background-color: #79C3B8;
   color: #EDEFEE;
-}
+} */

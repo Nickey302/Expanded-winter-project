@@ -34,10 +34,10 @@ function createBall(name, value, reason, image) {
   const ball = {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    radius: 100,
+    radius: 60,
     color: getRandomColor(),
-    dx: Math.random() * 4 + 1,
-    dy: Math.random() * 4 + 1,
+    dx: Math.random() * 2 + 1,
+    dy: Math.random() * 2 + 1,
     image: image,
     name: name,
     value: value,
@@ -77,7 +77,7 @@ class GuestbookManager {
               entry.name,
               entry.value,
               entry.reason,
-              entry.image // 빈 이미지에 대한 기본값
+              entry.image
             )
           }
         })
@@ -195,7 +195,7 @@ class GuestbookManager {
       name,
       value,
       reason,
-      image: image || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='
+      image: image
     }
 
     this.guestbook.push(newEntry)

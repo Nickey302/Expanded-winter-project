@@ -8,8 +8,10 @@
   </head>
   <body>
     <canvas id="guestbookCanvas"></canvas>
-    <button id="guestbookButton">방명록 작성하기</button>
+    <button id="guestbookButton" class="button-17" role="button">방명록 작성하기</button>
     <div id="tooltip" class="tooltip"></div>
+    <!-- <img class="image1" src="/image/image1.svg" alt="img">
+    <img class="image2" src="/image/img1.svg" alt="img"> -->
 
     <div id="guestbookModal" class="modal">
       <div class="modal-content">
@@ -17,7 +19,9 @@
           <div class="camera">
             <video id="video" autoplay></video>
             <canvas id="canvas"></canvas>
-            <button type="button" id="captureButton" class="capture-button">사진 찍기</button>
+            <div class="capture-button-background">
+              <button type="button" id="captureButton" class="capture-button"></button>
+            </div>
           </div>
           <div class="form">
             <h1>방명록 작성</h1>
@@ -38,3 +42,4 @@
     <script type="module" src="./src/script.js"></script>
   </body>
 </html>
+
