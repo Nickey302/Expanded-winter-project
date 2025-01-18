@@ -18,11 +18,16 @@
         <div class="container">
           <div class="camera">
             <video id="video" autoplay></video>
-            <canvas id="canvas"></canvas>
+            <canvas id="canvas" style="display: none;"></canvas>
+            <div id="controls" style="display: none; text-align: center; margin-top: 10px;">
+              <button type="button" id="retakeButton" class="button-17">재촬영</button>
+              <button type="button" id="okButton" class="button-17">OK</button>
+            </div>
             <div class="capture-button-background">
               <button type="button" id="captureButton" class="capture-button"></button>
             </div>
           </div>
+          
           <div class="form">
             <h1>방명록 작성</h1>
             <form id="guestbookForm">
