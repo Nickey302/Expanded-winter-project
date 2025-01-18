@@ -1,4 +1,3 @@
-// 캔버스 설정
 const canvas = document.getElementById("guestbookCanvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
@@ -24,17 +23,41 @@ function createBall(name, value, reason, image) {
     ball.name === name && 
     ball.value === value && 
     ball.reason === reason
-  )
+  );
 
   if (existingBall) {
-    console.log('이미 존재하는 공입니다')
-    return
+    console.log('이미 존재하는 공입니다');
+    return;
+  }
+
+  // 공의 크기 설정: 공의 개수에 따라 크기 조절
+  const totalBalls = balls.length + 1; // 방금 추가한 공까지 포함한 개수
+  let radius = 100;
+
+  // 공이 10개마다 크기 변경
+  if (totalBalls > 2) {
+    radius = 10;
+  }
+  if (totalBalls > 3) {
+    radius = 50;
+  }
+  if (totalBalls > 5) {
+    radius = 30;
+  }
+  if (totalBalls > 7) {
+    radius = 150;
+  }
+  if (totalBalls > 9) {
+    radius = 50;
+  }
+  if (totalBalls > 11) {
+    radius = 40;
   }
 
   const ball = {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    radius: 100,
+    radius: radius,
     color: getRandomColor(),
     dx: Math.random() * 4 + 1,
     dy: Math.random() * 4 + 1,
@@ -44,32 +67,32 @@ function createBall(name, value, reason, image) {
     reason: reason,
     imgLoaded: false,
     img: new Image()
-  }
+  };
 
   ball.img.onload = () => {
-    ball.imgLoaded = true
-  }
-  ball.img.src = image
+    ball.imgLoaded = true;
+  };
+  ball.img.src = image;
 
-  balls.push(ball)
+  balls.push(ball);  // 공 추가
 }
 
 // 방명록 데이터 처리를 위한 클래스 생성
 class GuestbookManager {
   constructor() {
-    this.guestbook = []
-    this.loadFromLocalStorage()
-    this.modal = document.getElementById('guestbookModal')
-    this.setupEventListeners()
-    this.initCamera()
+    this.guestbook = [];
+    this.loadFromLocalStorage();
+    this.modal = document.getElementById('guestbookModal');
+    this.setupEventListeners();
+    this.initCamera();
   }
 
   loadFromLocalStorage() {
     try {
       // localStorage에서 데이터 로드
-      const savedData = localStorage.getItem('guestbook')
+      const savedData = localStorage.getItem('guestbook');
       if (savedData) {
-        this.guestbook = JSON.parse(savedData)
+        this.guestbook = JSON.parse(savedData);
         // 모든 저장된 데이터로 공 생성
         this.guestbook.forEach(entry => {
           if (entry && entry.name && entry.value && entry.reason) {
@@ -78,117 +101,117 @@ class GuestbookManager {
               entry.value,
               entry.reason,
               entry.image // 빈 이미지에 대한 기본값
-            )
+            );
           }
-        })
+        });
       }
     } catch (error) {
-      console.error('localStorage 로드 중 오류 발생:', error)
-      this.guestbook = []
+      console.error('localStorage 로드 중 오류 발생:', error);
+      this.guestbook = [];
     }
   }
 
   setupEventListeners() {
     // 모달 열기 (팝업 창 대신 모달 표시)
     document.getElementById('guestbookButton').addEventListener('click', () => {
-      this.modal.style.display = 'flex'
+      this.modal.style.display = 'flex';
       // 웹캠 재시작 (모달이 열릴 때마다)
-      this.initCamera()
-    })
+      this.initCamera();
+    });
 
     // 모달 닫기
     document.getElementById('closeModal').addEventListener('click', () => {
-      this.modal.style.display = 'none'
+      this.modal.style.display = 'none';
       // 웹캠 스트림 정지
-      const videoElement = document.getElementById('video')
+      const videoElement = document.getElementById('video');
       if (videoElement.srcObject) {
-        const tracks = videoElement.srcObject.getTracks()
-        tracks.forEach(track => track.stop())
+        const tracks = videoElement.srcObject.getTracks();
+        tracks.forEach(track => track.stop());
       }
-    })
+    });
 
     // 배경 클릭시 모달 닫기
     this.modal.addEventListener('click', (e) => {
       if (e.target === this.modal) {
-        this.modal.style.display = 'none'
+        this.modal.style.display = 'none';
         // 웹캠 스트림 정지
-        const videoElement = document.getElementById('video')
+        const videoElement = document.getElementById('video');
         if (videoElement.srcObject) {
-          const tracks = videoElement.srcObject.getTracks()
-          tracks.forEach(track => track.stop())
+          const tracks = videoElement.srcObject.getTracks();
+          tracks.forEach(track => track.stop());
         }
       }
-    })
+    });
 
     // ESC 키로 모달 닫기
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && this.modal.style.display === 'flex') {
-        this.modal.style.display = 'none'
+        this.modal.style.display = 'none';
         // 웹캠 스트림 정지
-        const videoElement = document.getElementById('video')
+        const videoElement = document.getElementById('video');
         if (videoElement.srcObject) {
-          const tracks = videoElement.srcObject.getTracks()
-          tracks.forEach(track => track.stop())
+          const tracks = videoElement.srcObject.getTracks();
+          tracks.forEach(track => track.stop());
         }
       }
-    })
+    });
 
     // 사진 찍기
     document.getElementById('captureButton').addEventListener('click', () => {
-      const videoElement = document.getElementById('video')
-      const canvas = document.getElementById('canvas')
-      const context = canvas.getContext('2d')
+      const videoElement = document.getElementById('video');
+      const canvas = document.getElementById('canvas');
+      const context = canvas.getContext('2d');
 
-      canvas.width = videoElement.videoWidth
-      canvas.height = videoElement.videoHeight
-      context.drawImage(videoElement, 0, 0, canvas.width, canvas.height)
-      alert('사진이 찍혔습니다!')
-    })
+      canvas.width = videoElement.videoWidth;
+      canvas.height = videoElement.videoHeight;
+      context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+      alert('사진이 찍혔습니다!');
+    });
 
     // 폼 제출
     document.getElementById('guestbookForm').addEventListener('submit', (event) => {
-      event.preventDefault()
+      event.preventDefault();
       
-      const name = document.getElementById('name').value
-      const value = document.getElementById('value').value
-      const reason = document.getElementById('reason').value
-      const canvas = document.getElementById('canvas')
-      const image = canvas.toDataURL('image/png')
+      const name = document.getElementById('name').value;
+      const value = document.getElementById('value').value;
+      const reason = document.getElementById('reason').value;
+      const canvas = document.getElementById('canvas');
+      const image = canvas.toDataURL('image/png');
 
-      this.addGuestbookData(name, value, reason, image)
+      this.addGuestbookData(name, value, reason, image);
       
       // 폼 초기화 및 모달 닫기
-      event.target.reset()
-      this.modal.style.display = 'none'
+      event.target.reset();
+      this.modal.style.display = 'none';
       
       // 웹캠 스트림 정지
-      const videoElement = document.getElementById('video')
+      const videoElement = document.getElementById('video');
       if (videoElement.srcObject) {
-        const tracks = videoElement.srcObject.getTracks()
-        tracks.forEach(track => track.stop())
+        const tracks = videoElement.srcObject.getTracks();
+        tracks.forEach(track => track.stop());
       }
-    })
+    });
   }
 
   async initCamera() {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true })
-      const videoElement = document.getElementById('video')
-      videoElement.srcObject = stream
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const videoElement = document.getElementById('video');
+      videoElement.srcObject = stream;
       // 비디오가 로드되면 재생 시작
       videoElement.onloadedmetadata = () => {
-        videoElement.play()
-      }
+        videoElement.play();
+      };
     } catch (err) {
-      alert('웹캠을 사용할 수 없습니다: ' + err.message)
+      alert('웹캠을 사용할 수 없습니다: ' + err.message);
     }
   }
 
   addGuestbookData(name, value, reason, image) {
     // 유효한 데이터인지 확인
     if (!name || !value || !reason) {
-      console.error('유효하지 않은 데이터입니다')
-      return
+      console.error('유효하지 않은 데이터입니다');
+      return;
     }
 
     const newEntry = {
@@ -196,21 +219,21 @@ class GuestbookManager {
       value,
       reason,
       image: image || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='
-    }
+    };
 
-    this.guestbook.push(newEntry)
+    this.guestbook.push(newEntry);
     
     try {
-      localStorage.setItem('guestbook', JSON.stringify(this.guestbook))
-      createBall(name, value, reason, newEntry.image)
+      localStorage.setItem('guestbook', JSON.stringify(this.guestbook));
+      createBall(name, value, reason, newEntry.image);
     } catch (error) {
-      console.error('데이터 저장 중 오류 발생:', error)
+      console.error('데이터 저장 중 오류 발생:', error);
     }
   }
 }
 
 // GuestbookManager 인스턴스 생성
-const guestbookManager = new GuestbookManager()
+const guestbookManager = new GuestbookManager();
 
 // 공(원) 그리기 함수
 function drawBall(ball) {
@@ -295,27 +318,3 @@ window.addEventListener("resize", () => {
 
 // 애니메이션 시작
 animate();
-
-// 방명록 버튼 이벤트 리스너 추가
-document.getElementById('guestbookButton').removeEventListener('click', () => {
-  const popupUrl = 'src/guestbook/guestbook.html'
-  window.open(
-    popupUrl,
-    '방명록 작성',
-    'width=600,height=400,scrollbars=no,resizable=no'
-  )
-})
-
-// 팝업 창에서 전달받은 데이터를 LocalStorage에 저장하고 화면에 즉시 반영하는 함수
-function addGuestbookData(name, value, reason, image) {
-  // 새로운 데이터 추가
-  const newEntry = { name, value, reason, image }
-  guestbook.push(newEntry)
-  localStorage.setItem('guestbook', JSON.stringify(guestbook))
-
-  // 공(원) 생성 및 애니메이션에 추가
-  createBall(name, value, reason, image)
-}
-
-// 전역 스코프에서 함수를 사용할 수 있도록 window 객체에 할당
-window.addGuestbookData = addGuestbookData
