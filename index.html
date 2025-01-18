@@ -18,7 +18,11 @@
         <div class="container">
           <div class="camera">
             <video id="video" autoplay></video>
-            <canvas id="canvas"></canvas>
+            <canvas id="canvas" style="display: none;"></canvas>
+            <div id="controls" style="display: none; text-align: center; margin-top: 10px; display: flex; justify-content: center; gap: 10px; justify-items: center;">
+              <button style="position: relative; left: 40px;" type="button" id="retakeButton" class="button-17">재촬영</button>
+              <button style="position: relative; left: 40px;" type="button" id="okButton" class="button-17">OK</button>
+            </div>
             <div class="capture-button-background">
               <button type="button" id="captureButton" class="capture-button"></button>
             </div>

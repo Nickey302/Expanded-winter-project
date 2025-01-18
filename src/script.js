@@ -245,11 +245,62 @@ class GuestbookManager {
       const videoElement = document.getElementById('video');
       const canvas = document.getElementById('canvas');
       const context = canvas.getContext('2d');
-
+      const controls = document.getElementById('controls');
+    
       canvas.width = videoElement.videoWidth;
       canvas.height = videoElement.videoHeight;
       context.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
-      alert('사진이 찍혔습니다!');
+    
+      // 사진 미리보기 표시
+      videoElement.style.display = 'none';
+      canvas.style.display = 'block';
+      controls.style.display = 'flex'; // 버튼 컨트롤 표시
+    });
+    
+    document.getElementById('retakeButton').addEventListener('click', () => {
+      const videoElement = document.getElementById('video');
+      const canvas = document.getElementById('canvas');
+      const controls = document.getElementById('controls');
+    
+      // 재촬영 모드로 전환
+      canvas.style.display = 'none';
+      videoElement.style.display = 'block';
+      controls.style.display = 'none';
+    });
+    
+    document.getElementById('okButton').addEventListener('click', () => {
+      const canvas = document.getElementById('canvas');
+      const image = canvas.toDataURL('image/png');
+      
+      alert('이미지가 저장되었습니다!');
+      console.log('이미지 데이터:', image);
+    
+      // 재촬영과 같은 초기화
+      const videoElement = document.getElementById('video');
+      canvas.style.display = 'none';
+      videoElement.style.display = 'block';
+      document.getElementById('controls').style.display = 'none';
+    });
+    
+    // 카메라 초기화
+    async function initCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const videoElement = document.getElementById('video');
+        videoElement.srcObject = stream;
+    
+        // 비디오가 로드되면 재생 시작
+        videoElement.onloadedmetadata = () => {
+          videoElement.play();
+        };
+      } catch (err) {
+        alert('웹캠을 사용할 수 없습니다: ' + err.message);
+      }
+    }
+    
+    // 초기 설정
+    document.addEventListener('DOMContentLoaded', () => {
+      initCamera();
     });
 
     // 폼 제출
